@@ -16,11 +16,11 @@ class AppDynamicsJob(unittest.TestCase):
     def test_app_dynamics_job(self):
         wd = self.wd
         self.open_home_padge(wd)
-        self.open_doctors_page(wd)
         self.find_doctor_by_name(wd, doctor_name="Адаменко")
         wd.find_element(By.XPATH, "//img[@alt='logo']").click()
 
     def find_doctor_by_name(self, wd, doctor_name):
+        self.open_doctors_page(wd)
         wd.find_element(By.ID, "search-price").send_keys(doctor_name)
 
     def open_doctors_page(self, wd):
