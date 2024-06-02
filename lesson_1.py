@@ -2,7 +2,7 @@
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import NoAlertPresentException
-import unittest
+import unittest, time
 
 from selenium.webdriver.common.by import By
 
@@ -16,12 +16,18 @@ class AppDynamicsJob(unittest.TestCase):
     def test_app_dynamics_job(self):
         wd = self.wd
         self.open_home_padge(wd)
-        self.open_doctors_page(wd)
         self.find_doctor_by_name(wd, doctor_name="Адаменко")
         wd.find_element(By.XPATH, "//img[@alt='logo']").click()
+        self.open_home_padge(wd)
 
     def find_doctor_by_name(self, wd, doctor_name):
+        self.open_doctors_page(wd)
         wd.find_element(By.ID, "search-price").send_keys(doctor_name)
+        time.sleep(2)
+        wd.find_element(By.XPATH, ".//div[@class='pop-search-doc cookie-consent active']/img[@class ='exit-pop']").click()
+        wd.find_element(By.XPATH, ".//span[@class='highlight']").click()
+        time.sleep(2)
+        wd.find_element(By.XPATH, ".//div[@class='doc-card active']/a").click()
 
     def open_doctors_page(self, wd):
         # open doctors page
