@@ -26,7 +26,8 @@ class AppDynamicsJob(unittest.TestCase):
         time.sleep(2)
         wd.find_element(By.XPATH, ".//div[@class='pop-search-doc cookie-consent active']/img[@class ='exit-pop']").click()
         wd.find_element(By.XPATH, ".//span[@class='highlight']").click()
-        wd.find_element(By.XPATH, ".//img[@class='doc-card active']/img[@class=' ls-is-cached lazyloaded']").click()
+        time.sleep(2)
+        wd.find_element(By.XPATH, ".//div[@class='doc-card active']/a").click()
 
     def open_doctors_page(self, wd):
         # open doctors page
